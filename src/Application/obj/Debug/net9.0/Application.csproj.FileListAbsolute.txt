@@ -1,0 +1,12 @@
+C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Application\bin\Debug\net9.0\Application.deps.json
+C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Application\bin\Debug\net9.0\Application.dll
+C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Application\bin\Debug\net9.0\Application.pdb
+C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Application\obj\Debug\net9.0\Application.csproj.AssemblyReference.cache
+C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Application\obj\Debug\net9.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Application\obj\Debug\net9.0\Application.AssemblyInfoInputs.cache
+C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Application\obj\Debug\net9.0\Application.AssemblyInfo.cs
+C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Application\obj\Debug\net9.0\Application.csproj.CoreCompileInputs.cache
+C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Application\obj\Debug\net9.0\Application.dll
+C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Application\obj\Debug\net9.0\refint\Application.dll
+C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Application\obj\Debug\net9.0\Application.pdb
+C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Application\obj\Debug\net9.0\ref\Application.dll
