@@ -16,3 +16,4 @@ C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Infrastructure\bin\Debu
 C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Infrastructure\bin\Debug\net9.0\Domain.pdb
 C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Infrastructure\obj\Debug\net9.0\Infrastr.15EFFBFE.Up2Date
 C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Infrastructure\bin\Debug\net9.0\Microsoft.Extensions.Configuration.dll
+C:\Users\lucas\Desktop\TicTacToe\tic-tac-toe-backend\src\Infrastructure\obj\Debug\net9.0\Infrastructure.sourcelink.json

@@ -30,7 +30,10 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("Movements")
+                    b.Property<int>("MovementsO")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MovementsX")
                         .HasColumnType("integer");
 
                     b.Property<Guid>("PlayerOId")
@@ -42,11 +45,10 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("Updated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("WinSideO")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("WinSideX")
-                        .HasColumnType("integer");
+                    b.Property<int>("WinnerSide")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0);
 
                     b.HasKey("Id");
 

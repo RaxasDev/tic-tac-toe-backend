@@ -1,6 +1,8 @@
 using System.Reflection;
 using Application.Common;
+using Domain.Interfaces;
 using Infrastructure.Data;
+using Infrastructure.Repositories.EF;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,9 @@ builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(ApplicationMarker).Assembly);
 });
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
 
 builder.Services.AddSwaggerGen(c =>
 {

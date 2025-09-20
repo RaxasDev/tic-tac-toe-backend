@@ -1,4 +1,5 @@
 using Domain.Models;
+using Domain.Models.Enum;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -21,9 +22,11 @@ public class GameMatchMapping : IEntityTypeConfiguration<GameMatch>
             .HasForeignKey(g => g.PlayerOId)
             .OnDelete(DeleteBehavior.Restrict);
         
-        builder.Property(x => x.WinSideX).IsRequired();
-        builder.Property(x => x.WinSideO).IsRequired();
-        builder.Property(x => x.WinSideO).IsRequired();
+        builder.Property(x => x.MovementsX).IsRequired();
+        builder.Property(x => x.MovementsO).IsRequired();
+        builder.Property(x => x.WinnerSide)
+            .HasDefaultValue(WinnerSideEnum.DRAW)
+            .IsRequired();
         
         builder.ToTable("GameMatches");
     }

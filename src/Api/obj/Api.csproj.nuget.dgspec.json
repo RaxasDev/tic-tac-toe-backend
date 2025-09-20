@@ -132,7 +132,11 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\lucas\\Desktop\\TicTacToe\\tic-tac-toe-backend\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\lucas\\Desktop\\TicTacToe\\tic-tac-toe-backend\\src\\Domain\\Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

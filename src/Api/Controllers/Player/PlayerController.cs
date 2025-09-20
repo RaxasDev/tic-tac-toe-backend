@@ -1,4 +1,5 @@
-using Application.Queries.Player.GetAllPlayers;
+using Application.Dto;
+using Application.UseCase.Player.CreatePlayerMatch;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,16 +9,26 @@ namespace Api.Controllers.Player;
 public class PlayerController : ControllerBase
 {
     private readonly IMediator _mediator;
-    
+
     public PlayerController(IMediator mediator)
     {
         _mediator = mediator;
     }
-    
-    [HttpGet("all-players")]
-    public async Task<IActionResult> GetPlayers()
+
+    [HttpPost("create-match")]
+    public async Task<ActionResult> CreateGameMatch(
+        [FromBody] CreatePlayerMatchDto createPlayerMatchDto
+    )
     {
-        var result = await _mediator.Send(new GetAllPlayersQueryInput());
-        return result == null ? NotFound() : Ok(result);
+        var createPlayerMatch = new CreatePlayerMatchCommand(
+            createPlayerMatchDto.PlayerXName,
+            createPlayerMatchDto.PlayerOName,
+            createPlayerMatchDto.MovementsX,
+            createPlayerMatchDto.MovementsO,
+            createPlayerMatchDto.WinnerSide
+        );
+
+        var commandResult = await _mediator.Send(createPlayerMatch);
+        return commandResult == null ? BadRequest() : Ok(commandResult);
     }
 }

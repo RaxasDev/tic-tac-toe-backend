@@ -14,8 +14,18 @@ public class Player : BaseEntity, IAggregateRoot
     {
     }
 
-    Player(string name)
+    public Player(string name)
     {
         Name = name;
+    }
+
+    public void AddGameMatchAsX(GameMatch gameMatch)
+    {
+        _gameMatchesAsX.Add(gameMatch);
+    }
+    
+    public void AddGameMatchAsO(GameMatch gameMatch)
+    {
+        _gameMatchesAsO.Add(gameMatch);
     }
 }
