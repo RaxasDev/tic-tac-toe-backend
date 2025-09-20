@@ -22,6 +22,41 @@ namespace Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Domain.Models.GameMatch", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Movements")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("PlayerOId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("PlayerXId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("WinSideO")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("WinSideX")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlayerOId");
+
+                    b.HasIndex("PlayerXId");
+
+                    b.ToTable("GameMatches", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Models.Player", b =>
                 {
                     b.Property<Guid>("Id")
@@ -40,6 +75,32 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Players", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Models.GameMatch", b =>
+                {
+                    b.HasOne("Domain.Models.Player", "PlayerO")
+                        .WithMany("GameMatchesAsO")
+                        .HasForeignKey("PlayerOId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.Player", "PlayerX")
+                        .WithMany("GameMatchesAsX")
+                        .HasForeignKey("PlayerXId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("PlayerO");
+
+                    b.Navigation("PlayerX");
+                });
+
+            modelBuilder.Entity("Domain.Models.Player", b =>
+                {
+                    b.Navigation("GameMatchesAsO");
+
+                    b.Navigation("GameMatchesAsX");
                 });
 #pragma warning restore 612, 618
         }
