@@ -1,4 +1,5 @@
 using System.Reflection;
+using Api.Config;
 using Application.Common;
 using Domain.Interfaces;
 using Infrastructure.Data;
@@ -15,10 +16,10 @@ builder.Services.AddControllers();
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(ApplicationMarker).Assembly);
+    cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
 });
 
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
+builder.Services.RegisterDI();
 
 builder.Services.AddSwaggerGen(c =>
 {

@@ -1,5 +1,4 @@
 using System.Linq.Expressions;
-using Domain.Models;
 using Microsoft.EntityFrameworkCore.Query;
 
 namespace Domain.Interfaces;

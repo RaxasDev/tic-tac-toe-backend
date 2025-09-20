@@ -1,3 +1,5 @@
+using Domain.Helpers;
+
 namespace Domain.Models;
 
 public abstract class BaseEntity
@@ -5,6 +7,8 @@ public abstract class BaseEntity
     protected BaseEntity()
     {
         Id = Guid.NewGuid();
+        Created = DateTime.UtcNow;
+        Updated = DateTime.UtcNow;
     }
 
     public Guid Id { get; set; }

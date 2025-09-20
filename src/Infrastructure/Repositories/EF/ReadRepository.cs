@@ -77,4 +77,43 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity
 
         return await query.Select(selector).ToListAsync();
     }
+
+    public async Task<int> CountAsync(Expression<Func<T, bool>>? where = null)
+    {
+        var query = _query.AsNoTracking();
+
+        if (where is not null)
+            query = query.Where(where);
+
+        return await query.CountAsync();
+    }
+
+    public async Task<List<VM>> SelectPaginatedAsync<VM>(
+        Expression<Func<T, VM>> selector,
+        int pageNumber,
+        int pageSize,
+        Expression<Func<T, bool>>? where = null,
+        Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+        string? order = null
+    ) where VM : class
+    {
+        var query = _query.AsNoTracking().AsQueryable();
+
+        if (where is not null)
+            query = query.Where(where);
+
+        if (include is not null)
+            query = include(query);
+
+        if (!string.IsNullOrEmpty(order))
+            query = query.OrderBy(order);
+
+        var skip = (pageNumber - 1) * pageSize;
+
+        return await query
+            .Skip(skip)
+            .Take(pageSize)
+            .Select(selector)
+            .ToListAsync();
+    }
 }

@@ -29,6 +29,6 @@ public class PlayerController : ControllerBase
         );
 
         var commandResult = await _mediator.Send(createPlayerMatch);
-        return commandResult == null ? BadRequest() : Ok(commandResult);
+        return Ok(commandResult);
     }
 }

@@ -11,37 +11,45 @@ namespace Api.Controllers.Analytics;
 public class AnalyticsController : ControllerBase
 {
     private readonly IMediator _mediator;
-    
+
     public AnalyticsController(IMediator mediator)
     {
         _mediator = mediator;
     }
-    
+
     [HttpGet("info-cards")]
     public async Task<IActionResult> GetInfoCards()
     {
         var result = await _mediator.Send(new GetInfoCardsQueryInput());
-        return result == null ? NotFound() : Ok(result);
+        return Ok(result);
     }
-    
+
     [HttpGet("charts-data")]
     public async Task<IActionResult> GetChartsData()
     {
         var result = await _mediator.Send(new GetChartsDataQueryInput());
-        return result == null ? NotFound() : Ok(result);
+        return Ok(result);
     }
-    
+
     [HttpGet("ranking")]
     public async Task<IActionResult> GetPlayerRanking()
     {
         var result = await _mediator.Send(new GetRankingQueryInput());
-        return result == null ? NotFound() : Ok(result);
+        return Ok(result);
     }
-    
+
     [HttpGet("matches-history")]
-    public async Task<IActionResult> GetMatchesHistory()
+    public async Task<IActionResult> GetMatchesHistory(
+        [FromQuery] int pageNumber = 1,
+        [FromQuery] int pageSize = 5
+    )
     {
-        var result = await _mediator.Send(new GetMatchesHistoryQueryInput());
-        return result == null ? NotFound() : Ok(result);
+        var result = await _mediator.Send(new GetMatchesHistoryQueryInput
+        {
+            PageNumber = pageNumber,
+            PageSize = pageSize
+        });
+
+        return Ok(result);
     }
 }
