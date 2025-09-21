@@ -88,7 +88,7 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity
         return await query.CountAsync();
     }
 
-    public async Task<List<VM>> SelectPaginatedAsync<VM>(
+    public async Task<IPagedQueryResult<VM>> SelectPaginatedAsync<VM>(
         Expression<Func<T, VM>> selector,
         int pageNumber,
         int pageSize,
@@ -108,12 +108,15 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity
         if (!string.IsNullOrEmpty(order))
             query = query.OrderBy(order);
 
+        var totalItems = await query.CountAsync();
         var skip = (pageNumber - 1) * pageSize;
 
-        return await query
+        var items = await query
             .Skip(skip)
             .Take(pageSize)
             .Select(selector)
             .ToListAsync();
+
+        return new PagedQueryResult<VM>(items, totalItems, pageNumber, pageSize);
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Application.Queries.Analytics.GetMatchesHistory;
 
 public class GetMatchesHistoryQueryHandler
-    : IRequestHandler<GetMatchesHistoryQueryInput, List<GetMatchesHistoryViewModel>>
+    : IRequestHandler<GetMatchesHistoryQueryInput, IPagedQueryResult<GetMatchesHistoryViewModel>>
 {
     private readonly IReadRepository<GameMatch> _gameMatchRepository;
 
@@ -15,9 +15,13 @@ public class GetMatchesHistoryQueryHandler
         _gameMatchRepository = gameMatchRepository;
     }
 
-    public async Task<List<GetMatchesHistoryViewModel>> Handle(GetMatchesHistoryQueryInput request,
-        CancellationToken cancellationToken)
+    public async Task<IPagedQueryResult<GetMatchesHistoryViewModel>> Handle(
+        GetMatchesHistoryQueryInput request,
+        CancellationToken cancellationToken
+    )
     {
+        Console.WriteLine("Batata");
+        
         var matches = await _gameMatchRepository.SelectPaginatedAsync(
             m => new GetMatchesHistoryViewModel(
                 m.Id,

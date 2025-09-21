@@ -44,12 +44,7 @@ public class AnalyticsController : ControllerBase
         [FromQuery] int pageSize = 5
     )
     {
-        var result = await _mediator.Send(new GetMatchesHistoryQueryInput
-        {
-            PageNumber = pageNumber,
-            PageSize = pageSize
-        });
-
+        var result = await _mediator.Send(new GetMatchesHistoryQueryInput(pageNumber, pageSize));
         return Ok(result);
     }
 }

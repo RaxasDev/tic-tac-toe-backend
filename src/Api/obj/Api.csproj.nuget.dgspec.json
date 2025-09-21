@@ -135,6 +135,9 @@
             "projectReferences": {
               "C:\\Users\\lucas\\Desktop\\TicTacToe\\tic-tac-toe-backend\\src\\Domain\\Domain.csproj": {
                 "projectPath": "C:\\Users\\lucas\\Desktop\\TicTacToe\\tic-tac-toe-backend\\src\\Domain\\Domain.csproj"
+              },
+              "C:\\Users\\lucas\\Desktop\\TicTacToe\\tic-tac-toe-backend\\src\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\lucas\\Desktop\\TicTacToe\\tic-tac-toe-backend\\src\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }

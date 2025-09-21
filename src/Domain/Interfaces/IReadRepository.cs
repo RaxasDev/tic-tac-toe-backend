@@ -26,7 +26,7 @@ public interface IReadRepository<T> where T : BaseEntity
 
     Task<int> CountAsync(Expression<Func<T, bool>>? where = null);
 
-    Task<List<VM>> SelectPaginatedAsync<VM>(
+    Task<IPagedQueryResult<VM>> SelectPaginatedAsync<VM>(
         Expression<Func<T, VM>> selector,
         int pageNumber,
         int pageSize,
