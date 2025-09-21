@@ -2,4 +2,4 @@ using MediatR;
 
 namespace Application.Queries.Analytics.GetInfoCards;
 
-public class GetInfoCardsQueryInput : IRequest<List<GetInfoCardsViewModel>>;
+public class GetInfoCardsQueryInput : IRequest<GetInfoCardsViewModel>;

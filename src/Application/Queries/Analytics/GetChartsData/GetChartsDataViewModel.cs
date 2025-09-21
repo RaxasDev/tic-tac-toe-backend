@@ -2,14 +2,15 @@ namespace Application.Queries.Analytics.GetChartsData;
 
 public class GetChartsDataViewModel
 {
-    public string Name { get; private set; }
-    public string Color { get; private set; }
-    public int Value { get; private set; }
+    public List<VictoryChartDataViewModel> VictoryData { get; private set; }
+    public List<MatchesPerDayViewModel> MatchesPerDay { get; private set; }
 
-    public GetChartsDataViewModel(string name, string color, int value)
+    public GetChartsDataViewModel(
+        List<VictoryChartDataViewModel> victoryData,
+        List<MatchesPerDayViewModel> matchesPerDay
+    )
     {
-        Name = name;
-        Color = color;
-        Value = value;
+        VictoryData = victoryData;
+        MatchesPerDay = matchesPerDay;
     }
 }

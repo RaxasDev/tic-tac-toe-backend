@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Application.Queries.Analytics.GetInfoCards;
 
-public class GetInfoCardsHandler : IRequestHandler<GetInfoCardsQueryInput, List<GetInfoCardsViewModel>>
+public class GetInfoCardsHandler : IRequestHandler<GetInfoCardsQueryInput, GetInfoCardsViewModel>
 {
     private readonly IReadRepository<Player> _playerRepository;
     private readonly IReadRepository<GameMatch> _gameMatchRepository;
@@ -18,7 +18,7 @@ public class GetInfoCardsHandler : IRequestHandler<GetInfoCardsQueryInput, List<
         _gameMatchRepository = gameMatchRepository;
     }
 
-    public async Task<List<GetInfoCardsViewModel>> Handle(
+    public async Task<GetInfoCardsViewModel> Handle(
         GetInfoCardsQueryInput request,
         CancellationToken cancellationToken
     )
@@ -28,7 +28,7 @@ public class GetInfoCardsHandler : IRequestHandler<GetInfoCardsQueryInput, List<
         var totalMatches = await _gameMatchRepository.CountAsync();
 
         var movements = (await _gameMatchRepository
-                .Select(g => new { TotalMovements = g.MovementsX + g.MovementsO }))
+                .Select(g => new { g.TotalMovements }))
             .ToList();
 
         int averageMovements = 0;
@@ -47,6 +47,6 @@ public class GetInfoCardsHandler : IRequestHandler<GetInfoCardsQueryInput, List<
             matchWithLessMovements
         );
 
-        return new List<GetInfoCardsViewModel> { result };
+        return result;
     }
 }
