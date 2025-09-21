@@ -20,8 +20,6 @@ public class GetMatchesHistoryQueryHandler
         CancellationToken cancellationToken
     )
     {
-        Console.WriteLine("Batata");
-        
         var matches = await _gameMatchRepository.SelectPaginatedAsync(
             m => new GetMatchesHistoryViewModel(
                 m.Id,
