@@ -18,7 +18,8 @@ public class GetRankingViewModel
         int bestMoves,
         int wins,
         int losses,
-        int draws
+        int draws,
+        int winRate
     )
     {
         Position = position;
@@ -28,6 +29,6 @@ public class GetRankingViewModel
         Wins = wins;
         Losses = losses;
         Draws = draws;
-        WinRate = wins;
+        WinRate = winRate;
     }
 }

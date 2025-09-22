@@ -1,4 +1,3 @@
-using System.Linq.Expressions;
 using Domain.Interfaces;
 using Domain.Models;
 using Domain.Models.Enum;
@@ -54,10 +53,13 @@ public class GetRankingQueryHandler : IRequestHandler<GetRankingQueryInput, List
                         (m.PlayerXId == player.Id && m.WinnerSide == WinnerSideEnum.X) ||
                         (m.PlayerOId == player.Id && m.WinnerSide == WinnerSideEnum.O))
                     .Select(m => m.PlayerXId == player.Id ? m.MovementsX : m.MovementsO)
-                    .DefaultIfEmpty(0)
+                    .DefaultIfEmpty(int.MaxValue)
                     .Min();
 
                 var totalMatches = playerMatches.Count;
+                var winRate = totalMatches == 0
+                    ? 0
+                    : (int)Math.Round((wins * 100.0) / totalMatches, MidpointRounding.AwayFromZero);
 
                 return new
                 {
@@ -67,7 +69,7 @@ public class GetRankingQueryHandler : IRequestHandler<GetRankingQueryInput, List
                     Losses = losses,
                     Draws = draws,
                     BestMoves = bestMoves,
-                    WinRate = totalMatches == 0 ? 0 : (int)Math.Round((wins * 100.0) / totalMatches)
+                    WinRate = winRate
                 };
             })
             .OrderByDescending(x => x.WinRate)
@@ -77,10 +79,11 @@ public class GetRankingQueryHandler : IRequestHandler<GetRankingQueryInput, List
                 position: index + 1,
                 name: x.Player.Name,
                 matches: x.Matches,
-                bestMoves: x.BestMoves,
+                bestMoves: x.BestMoves == int.MaxValue ? 0 : x.BestMoves,
                 wins: x.Wins,
                 losses: x.Losses,
-                draws: x.Draws
+                draws: x.Draws,
+                winRate: x.WinRate
             ))
             .ToList();
 
